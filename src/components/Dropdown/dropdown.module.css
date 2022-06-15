@@ -1,0 +1,50 @@
+.dd_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px black solid;
+  width: 15rem;
+}
+
+.dd_box {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  width: 100%;
+  max-width: 15rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.2rem;
+}
+
+.dd_container.inactive > .dd_list_container {
+  display: none !important;
+}
+
+.dd_list_container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  border: 0.5px black solid;
+}
+
+.dd_btn {
+  border: none;
+  background: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  height: 2rem;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
