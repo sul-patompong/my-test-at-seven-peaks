@@ -4,7 +4,7 @@ export const MainContainer = styled.div`
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0;
+  padding: 1rem 0;
   width: 80%;
   min-height: calc(100% - 13rem);
 
