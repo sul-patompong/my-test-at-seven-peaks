@@ -61,15 +61,10 @@ class AppStore {
   isLoading: boolean = true;
   sorting: string = 'newest';
   private bookmarkList: string[] = [];
-  private apiKey: string = process.env.REACT_APP_G_API_KEY ?? '';
-  private baseUrl: string = `${
-    process.env.REACT_APP_PROXY_URL ?? ''
-  }https://content.guardianapis.com`;
+  private apiKey: string = 'ec4a973a-d4fc-4edf-ae1f-d17152cb0c74';
+  private baseUrl: string = `https://content.guardianapis.com`;
   private axiosConfig = {
-    method: 'get',
-    headers: {
-      'api-key': this.apiKey,
-    },
+    method: 'get'
   };
 
   constructor() {
@@ -198,6 +193,7 @@ class AppStore {
     try {
       const url =
         `/search?section=${section}` +
+        `&api-key=${this.apiKey}` +
         `&show-fields=thumbnail,bodyText` +
         `&page-size=${pageSize}` +
         `&page=${page}` +
@@ -218,7 +214,7 @@ class AppStore {
 
   private async fetchById(id: string): Promise<NewsItem | null> {
     try {
-      const url = `/${id}?show-fields=thumbnail,bodyText,headline,body`;
+      const url = `/${id}?api-key=${this.apiKey}&show-fields=thumbnail,bodyText,headline,body`;
       const { data } = await axios.get<ApiGetByIdResponse>(
         this.baseUrl + url,
         this.axiosConfig
