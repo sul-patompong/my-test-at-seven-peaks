@@ -34,7 +34,7 @@ export interface NewsItem {
   type: string;
   sectionId: string;
   sectionName: string;
-  webPublicationDate: string;
+  webPublicationDate: Date;
   webTitle: string;
   webUrl: string;
   apiUrl: string;
@@ -64,7 +64,7 @@ class AppStore {
   private apiKey: string = process.env.REACT_APP_G_API_KEY ?? '';
   private baseUrl: string = `https://content.guardianapis.com`;
   private axiosConfig = {
-    method: 'get'
+    method: 'get',
   };
 
   constructor() {
@@ -109,7 +109,7 @@ class AppStore {
     return result !== -1;
   }
 
-  async loadArticlesInBookMark(orderBy: string) {
+  async loadArticlesInBookMark() {
     this.isLoading = true;
     const promise: Array<Promise<NewsItem | null>> = [];
 
@@ -121,11 +121,26 @@ class AppStore {
 
     const data = await Promise.all(promise);
     data.forEach((item) => {
-      if (item) tempItems.push(item);
+      if (item)
+        tempItems.push({
+          ...item,
+          webPublicationDate: new Date(item.webPublicationDate),
+        });
     });
 
+    let sortedResult: NewsItem[] = [];
+    if (this.sorting === 'newest') {
+      sortedResult = tempItems.sort(
+        (a, b) => b.webPublicationDate.valueOf() - a.webPublicationDate.valueOf()
+      );
+    } else {
+      sortedResult = tempItems.sort(
+        (a, b) => a.webPublicationDate.valueOf() - b.webPublicationDate.valueOf()
+      );
+    }
+
     runInAction(() => {
-      this.articleByBookmark = tempItems;
+      this.articleByBookmark = sortedResult;
       this.isLoading = false;
     });
   }

@@ -8,8 +8,8 @@ import appStore from '../store/AppStore';
 
 const BookmarkPage = (): JSX.Element => {
   useEffect(() => {
-    appStore.loadArticlesInBookMark('newest');
-  }, []);
+    appStore.loadArticlesInBookMark();
+  }, [appStore.sorting]);
 
   return (
     <MainContainer>
