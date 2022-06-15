@@ -61,7 +61,7 @@ class AppStore {
   isLoading: boolean = true;
   sorting: string = 'newest';
   private bookmarkList: string[] = [];
-  private apiKey: string = 'ec4a973a-d4fc-4edf-ae1f-d17152cb0c74';
+  private apiKey: string = process.env.REACT_APP_G_API_KEY ?? '';
   private baseUrl: string = `https://content.guardianapis.com`;
   private axiosConfig = {
     method: 'get'

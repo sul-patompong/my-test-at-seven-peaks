@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-with-prefill": "REACT_APP_G_API_KEY=ec4a973a-d4fc-4edf-ae1f-d17152cb0c74 REACT_APP_PROXY_URL=https://thingproxy.freeboard.io/fetch/ react-scripts start"
+    "start-with-prefill": "REACT_APP_G_API_KEY=ec4a973a-d4fc-4edf-ae1f-d17152cb0c74 react-scripts start"
   },
   "eslintConfig": {
     "extends": [
