@@ -8,40 +8,39 @@ import { observer } from 'mobx-react-lite';
 import appStore from '../store/AppStore';
 import PageHeader from '../layouts/PageHeader';
 
-function isBottom(ref: React.RefObject<HTMLButtonElement>) {
-  if (!ref.current) {
-    return false;
-  }
-  return ref.current.getBoundingClientRect().bottom <= window.innerHeight;
-}
-
 const SearchResult = (): JSX.Element => {
-  const [page, setPage] = React.useState<number>(2);
-  const [loading, setLoading] = React.useState<boolean>(false);
   const { searchItem } = AppStore;
-  const observItem = React.useRef<HTMLButtonElement>(null);
+  const [currentPage, setCurrentPage] = React.useState(2);
+
+  React.useEffect(() => {
+    loadNextPage();
+  }, [currentPage]);
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  }, []);
 
   // Fetch news at page loads
   React.useEffect(() => {
+    setCurrentPage(2)
     beginLoadNews();
   }, [AppStore.searchKeyword, appStore.sorting]);
 
-  const loadNextPage = async () => {
-    setLoading(true);
-    await appStore.getSearchByKeywordNextPage(page, AppStore.searchKeyword);
-    setPage(page + 1);
-    setLoading(false);
+  const handleScroll = (e: any) => {
+    if (
+      window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+      e.target.documentElement.scrollHeight
+    ) {
+      setCurrentPage((currentPage) => currentPage + 1);
+    }
   };
 
-  React.useEffect(() => {
-    const onScroll = () => {
-      if (!loading && isBottom(observItem)) {
-        loadNextPage();
-      }
-    };
-    document.addEventListener('scroll', onScroll);
-    return () => document.removeEventListener('scroll', onScroll);
-  }, [loadNextPage, loading]);
+  const loadNextPage = async () => {
+    await appStore.getSearchByKeywordNextPage(
+      currentPage,
+      AppStore.searchKeyword
+    );
+  };
 
   const beginLoadNews = async () => {
     await AppStore.getSearchByKeyword(1, AppStore.searchKeyword);
@@ -64,13 +63,6 @@ const SearchResult = (): JSX.Element => {
             );
           })}
       </ThreeColumnContainer>
-      <button
-        ref={observItem}
-        style={{ display: 'none' }}
-        onClick={loadNextPage}
-      >
-        Load more...
-      </button>
     </MainContainer>
   );
 };
