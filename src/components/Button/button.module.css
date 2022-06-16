@@ -1,0 +1,22 @@
+/* Style buttons */
+.btn {
+  background-color: #0b2568;
+  border: none;
+  color: white;
+  padding: 8px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  width: 8rem;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: #103baa;
+}

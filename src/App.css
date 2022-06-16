@@ -1,0 +1,50 @@
+.navbar {
+  height: 9rem;
+  background-color: #0b2568;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navbar-logo {
+  max-height: 4rem;
+}
+
+.navbar-logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+}
+
+.navbar-search-wrapper {
+  position: relative;
+}
+
+.navbar-searchBox {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+}
+
+.mainContent {
+  display: block;
+}
+
+@media (min-width: 50em) {
+  .navbar {
+    height: 8rem;
+  }
+
+  .navbar-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

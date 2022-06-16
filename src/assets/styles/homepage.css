@@ -1,0 +1,36 @@
+.homepage-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.homepage-container > .homepage-topic-container > h1 {
+  font-size: 3rem;
+}
+
+.homepage-topic-container {
+  flex-direction: row;
+}
+
+.page_header_container {
+  grid-template-rows: 1fr 1fr;
+}
+
+.page_header_container > div {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 50em) {
+  .page_header_container {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .homepage-topic-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+}
