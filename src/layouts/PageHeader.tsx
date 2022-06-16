@@ -16,6 +16,7 @@ export const PageHeader = (props: PageHeaderProps): JSX.Element => {
       <div className='page_header_container'>
         {props.showBookmarkButton ? <ViewBookmarkButton /> : <span></span>}
         <Dropdown
+          value={appStore.sorting}
           onSelectedChange={(sort) => appStore.setSorting(sort)}
           list={[
             { value: 'newest', text: 'Newest First' },

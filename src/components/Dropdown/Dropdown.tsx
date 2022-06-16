@@ -9,15 +9,16 @@ interface IDropdownItem {
 interface IDropdownProps {
   list: IDropdownItem[];
   onSelectedChange: (sort: string) => void;
+  value: string;
 }
 
 export const Dropdown = (props: IDropdownProps): JSX.Element => {
   const [isShow, setIsShow] = React.useState<boolean>(false);
-  const [list, setList] = React.useState<IDropdownItem[]>([]);
   const [selected, setSelected] = React.useState<IDropdownItem>();
 
   React.useEffect(() => {
-    setSelected(props.list[0]);
+    const selected = props.list.find((item) => item.value == props.value);
+    if (selected) setSelected(selected);
   }, []);
 
   React.useEffect(() => {
